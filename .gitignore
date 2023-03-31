@@ -1,0 +1,15 @@
+
+.idea/
+/build-resources/
+/node_modules/
+
+# To take advantage of the two package build mode for electron-builder (may be able to use other names)
+/app/
+/dist/
+/src/modified/
+/src/original/
+/build/
+
+*.log
+/blitz-package-backup.json
+
