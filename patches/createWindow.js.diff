@@ -9,16 +9,7 @@
  const IS_DEV = BLITZ_URL || BLITZ_DEBUG;
  const PLATFORM = os.platform();
  
-@@ -195,6 +195,8 @@
-     nativeCallbacksAttached = true;
-   }
- 
-+  console.log("app version", app.getVersion());
-+
-   //resource load
-   windows.client.webContents.on("did-finish-load", () => {
-     windows.client.webContents.send("__BLITZ_MAIN_MESSAGE__", {
-@@ -299,6 +301,8 @@
+@@ -299,6 +299,8 @@
        // Sandbox is enabled globally, this is just to make sure.
        sandbox: true,
  
@@ -27,7 +18,7 @@
        preload: path.join(__dirname, "preload.js"),
  
        // WARNING: DO NOT USE THIS. this changes the entire cache directory,
-@@ -307,11 +311,19 @@
+@@ -307,11 +309,19 @@
        backgroundThrottling: !app.commandLine.hasSwitch("--blitz-bgth"),
      },
    });
