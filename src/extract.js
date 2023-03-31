@@ -11,9 +11,10 @@ const blitzExe = path.join(buildResFolder, blitzExeName);
 const blitzUnpacked = path.join(buildResFolder, "exe-contents");
 const appZip = path.join(blitzUnpacked, "$PLUGINSDIR", "app-64.7z");
 const unpackContents = path.join(buildResFolder, "unpacked");
+const binaries = path.join(buildResFolder, "resources", "binaries");
 const extractedAsar = path.join(buildResFolder, "extracted-asar");
 const asarFile = path.join(unpackContents, "resources", "app.asar");
-const rebuildFolder = path.join(__dirname, "../app");
+const prebuilt_win = path.join(__dirname, "../app", "prebuilt_win");
 const ProgressBar = require('progress');
 
 function extractAsync(name, stream) {
@@ -82,6 +83,11 @@ function removeIfExists(path) {
         fs.cpSync(valorant_utils, moba_dist, {recursive: true})
     } else {
         console.log("Found valorant-utils, skipping step.");
+    }
+
+    if(!fs.existsSync(prebuilt_win)) {
+        console.log("Copying pre-built modules (prebuilt_win)");
+        fs.cpSync(binaries, prebuilt_win, {recursive: true})
     }
 
     console.log("Deleting node_modules (these ones are meant for windows)");

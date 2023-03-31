@@ -1,0 +1,19 @@
+--- src/original/native-utils.js
++++ src/modified/native-utils.js
+@@ -27,6 +27,7 @@
+     //dev/unpackaged mode
+     switch (platform) {
+       case "win32":
++      case "linux":
+         return path.resolve(__dirname, `../prebuilt_win/${moduleName}.node`);
+       case "darwin":
+         return path.resolve(__dirname, `../build/Release/${moduleName}.node`);
+@@ -37,7 +38,7 @@
+ }
+ 
+ function loadNativeModule(moduleName) {
+-  if (platform !== "win32" && platform !== "darwin")
++  if (platform !== "win32" && platform !== "darwin" && platform !== "linux")
+     throw new Error(
+       "Unable to load native node modules in unsupported platforms."
+     );

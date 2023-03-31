@@ -1,0 +1,59 @@
+--- src/original/createWindow.js
++++ src/modified/createWindow.js
+@@ -22,7 +22,7 @@
+   handleDeeplink,
+ } = require("./windowUtils");
+ 
+-const { BLITZ_URL, BLITZ_DEBUG } = process.env;
++const { BLITZ_URL, BLITZ_DEBUG, IS_ELECTRON_DEV } = process.env;
+ const IS_DEV = BLITZ_URL || BLITZ_DEBUG;
+ const PLATFORM = os.platform();
+ 
+@@ -195,6 +195,8 @@
+     nativeCallbacksAttached = true;
+   }
+ 
++  console.log("app version", app.getVersion());
++
+   //resource load
+   windows.client.webContents.on("did-finish-load", () => {
+     windows.client.webContents.send("__BLITZ_MAIN_MESSAGE__", {
+@@ -278,7 +280,7 @@
+     minWidth: Math.min(MIN_WIDTH, displaySize.width),
+     title: app.name,
+     icon,
+-    frame: false,
++    frame: true,
+     fullscreenable: false,
+     backgroundColor: "#0C0E13",
+     titleBarStyle: process.platform === "darwin" ? "hiddenInset" : "default",
+@@ -299,6 +301,8 @@
+       // Sandbox is enabled globally, this is just to make sure.
+       sandbox: true,
+ 
++      devTools: IS_ELECTRON_DEV,
++
+       preload: path.join(__dirname, "preload.js"),
+ 
+       // WARNING: DO NOT USE THIS. this changes the entire cache directory,
+@@ -307,11 +311,19 @@
+       backgroundThrottling: !app.commandLine.hasSwitch("--blitz-bgth"),
+     },
+   });
++  console.log("Stuff", windowInstance.webContents.openDevTools);
++  if(IS_ELECTRON_DEV) windowInstance.webContents.openDevTools({ mode: 'detach' });
+ 
+   windows.client = windowInstance;
+ 
+   windows.client._initialURL = initialURL;
+-  windows.client.setIcon(icon);
++  console.log("initialURL", initialURL);
++  console.log("icon", icon);
++  console.log("icon", icon);
++  // For some reason this seems to freeze, TODO investigate
++  //windows.client.setIcon(icon);
++
++
+ 
+   /**
+    * Once the app starts after applying Update

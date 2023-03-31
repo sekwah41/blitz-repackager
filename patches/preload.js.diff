@@ -1,0 +1,11 @@
+--- src/original/preload.js
++++ src/modified/preload.js
+@@ -91,7 +91,7 @@
+     fn(value);
+     return;
+   }
+-
++  console.log("Received unhandled main message", event);
+   switch (type) {
+     case messages.APP_VERSION: {
+       console.log("APP CORE VERSION", value);

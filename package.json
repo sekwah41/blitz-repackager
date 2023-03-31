@@ -24,7 +24,7 @@
     "clean": "rm -rf app && rm -rf src/original && rm -rf src/modified && rm -rf build-resources && rm -rf dist",
     "deep-clean": "yarn clean && rm -rf node_modules",
     "test-build": "./dist/linux-unpacked/blitz-desktop",
-    "run-electron": "cd app && electron ./src/index.js",
+    "run-electron": "cd app && electron .",
     "patch-and-run-electron": "yarn new-gen-patches && yarn reset-and-apply-patch && yarn run-electron",
     "patch-and-run-standalone": "yarn new-gen-patches && yarn reset-and-apply-patch && yarn dist --linux dir && ./dist/linux-unpacked/blitz-desktop",
     "setup": "yarn clean && yarn extract && yarn create-patched-src && yarn new-apply-patch"

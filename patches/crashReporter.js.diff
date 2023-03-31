@@ -1,0 +1,10 @@
+--- src/original/crashReporter.js
++++ src/modified/crashReporter.js
+@@ -17,6 +17,7 @@
+ crashReporter.start({
+   ignoreSystemCrashHandler: true,
+   submitURL,
++  uploadToServer: false,
+   compress: true,
+ });
+ 

@@ -1,0 +1,32 @@
+--- src/original/blitz-entry.js
++++ src/modified/blitz-entry.js
+@@ -97,9 +97,7 @@
+    to allow for updating the original files despite them having open handles (being in use).
+   */
+ function copyDeps() {
+-  const origDepsPaths = !app.isPackaged
+-    ? [path.join(__dirname, "..", "prebuilt_win")]
+-    : [path.join(app.getAppPath(), "..", "..", "resources", "binaries")];
++  const origDepsPaths = [path.join(__dirname, "..", "prebuilt_win")];
+ 
+   // if BLITZ_DEPS_DIR doesn't exists then create it
+   if (!fse.existsSync(BLITZ_DEPS_DIR)) {
+@@ -322,18 +320,6 @@
+ 
+   if (BLITZ_DEBUG && !BLITZ_URL) initialURL = DEBUG_PATH;
+ 
+-  // Skip auto updater step for debug and testing purposes.
+-  if (!BLITZ_DEBUG && !BLITZ_URL && channel) {
+-    try {
+-      let showSplash = await shouldShowSplash();
+-      await autoUpdater.bootApp(showSplash);
+-    } catch (err) {
+-      log.error("[Updater] error", err);
+-    } finally {
+-      await autoUpdater.closeUpdaterWindow(500);
+-    }
+-  }
+-
+   log.info("Booting Blitz from ", initialURL);
+   await createWindow(initialURL);
+ 
