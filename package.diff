@@ -1,0 +1,11 @@
+--- ../blitz-package-backup.json	2023-03-31 02:40:52.701653453 +0100
++++ package.json	2023-03-31 02:41:31.825290813 +0100
+@@ -50,7 +50,7 @@
+     "steam-acf2json": "^0.1.1",
+     "systeminformation": "^5.9.4",
+     "uuid": "^9.0.0",
+-    "valorant-utils": "git+ssh://git@github.com/theblitzapp/valorant-utils#6dedba8b9644b679a16ea47c32ab83243ec4a930",
++    "valorant-utils": "file:../extracted_packages/valorant-utils",
+     "vdf-parser": "^1.2.0",
+     "winreg": "^1.2.4",
+     "xml2js": "^0.4.23"

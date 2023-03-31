@@ -71,17 +71,17 @@ function removeIfExists(path) {
 
     
 
-    const moba_shared = path.join(node_modules, "@blitz", "shared");
+    const valorant_utils = path.join(node_modules, "valorant-utils");
 
-    const moba_dist = path.join(__dirname, "../moba-shared/dist");
+    const moba_dist = path.join(__dirname, "../extracted_packages/valorant-utils");
 
     
     
     if(!fs.existsSync(moba_dist)) {
-        console.log("Saving needed module (moba-shared)");
-        fs.cpSync(moba_shared, moba_dist, {recursive: true})
+        console.log("Saving needed module (valorant-utils)");
+        fs.cpSync(valorant_utils, moba_dist, {recursive: true})
     } else {
-        console.log("Found moba-shared, skipping step.");
+        console.log("Found valorant-utils, skipping step.");
     }
 
     console.log("Deleting node_modules (these ones are meant for windows)");

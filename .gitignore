@@ -13,3 +13,4 @@
 *.log
 /blitz-package-backup.json
 
+/extracted_packages/
